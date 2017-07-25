@@ -1,0 +1,16 @@
+#! /bin/bash
+
+function env_adhder()
+{
+source ~/.env/.adhder
+}
+
+function env_fmriprep()
+{
+source ~/.env/.fmriprep
+}
+
+function env_webppl()
+{
+source ~/.env/.webppl
+}

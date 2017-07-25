@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Set command line prompt
+export project_name="ADHDER"
+
+# Call appropriate functions from ~/.functions
+source "$HOME"/.functions
+tb_nipype
+
+# Set directory aliases
+alias phome=""

@@ -1,0 +1,59 @@
+#! /bin/bash
+
+function tb_matlab()
+{
+	echo ''
+	echo 'loading matlab functions'
+	
+	module add mit/matlab/2017a
+	alias matlabcl="matlab -nodesktop -nosplash -nodisplay -singleCompThread"
+	alias matlabclgreedy="matlab -nodesktop -nosplash -nodisplay"
+	
+	echo ''
+	echo ''
+}
+
+function tb_webppl()
+{
+	echo ''
+	echo 'loading webppl functions'
+
+	export PATH="/om/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
+	echo $PATH
+	echo ''
+	echo ''
+}
+
+function tb_fmriprep()
+{
+	echo ''
+	echo 'loading fmriprep functions'
+	
+	module add openmind/singularity/2.3.1
+	
+	echo ''
+	echo ''
+}
+
+function tb_nipype()
+{
+	echo 'loading nipype functions'
+
+	module add openmind/gcc/5.3.0
+	module add mit/matlab/2017a
+	module add openmind/ants/2.1.0-3.8bed08
+	module add openmind/freesurfer/6.0.0
+	module add openmind/fsl/5.0.9
+	module add openmind/afni/2016.03.08
+	module add openmind/slicer/4.6.2
+
+	# added by Anaconda3 4.4.0 installer
+	export PATH="/om/user/daeda/software/anaconda3/bin:$PATH"
+
+	# Needed for nipype
+	export SPM_PATH="/mindhive/gablab/u/daeda/software/spm12_modified"
+
+	echo $PATH
+	echo ''
+	echo ''
+}
