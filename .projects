@@ -2,15 +2,15 @@
 
 function env_adhder()
 {
-source ~/.env/.adhder
+source "$HOME/.env/.adhder"
 }
 
 function env_fmriprep()
 {
-source ~/.env/.fmriprep
+source "$HOME/.env/.fmriprep"
 }
 
 function env_webppl()
 {
-source ~/.env/.webppl
+source "$HOME/.env/.webppl"
 }

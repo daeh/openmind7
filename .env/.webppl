@@ -4,7 +4,7 @@
 export project_name="WEBPPL"
 
 # Call appropriate functions from ~/.functions
-source "$HOME"/.functions
+source "$HOME/.functions"
 tb_webppl
 
 # Set directory aliases

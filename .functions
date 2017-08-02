@@ -9,6 +9,7 @@ function tb_matlab()
 	alias matlabcl="matlab -nodesktop -nosplash -nodisplay -singleCompThread"
 	alias matlabclgreedy="matlab -nodesktop -nosplash -nodisplay"
 	
+	echo "$PATH"
 	echo ''
 	echo ''
 }
@@ -19,7 +20,8 @@ function tb_webppl()
 	echo 'loading webppl functions'
 
 	export PATH="/om/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
-	echo $PATH
+	
+	echo "$PATH"
 	echo ''
 	echo ''
 }
@@ -31,6 +33,7 @@ function tb_fmriprep()
 	
 	module add openmind/singularity/2.3.1
 	
+	echo "$PATH"
 	echo ''
 	echo ''
 }
@@ -53,7 +56,24 @@ function tb_nipype()
 	# Needed for nipype
 	export SPM_PATH="/mindhive/gablab/u/daeda/software/spm12_modified"
 
-	echo $PATH
+	echo "$PATH"
 	echo ''
 	echo ''
+
+	function nicrash()
+{
+#echo "The script you are running has basename `basename $0`, dirname `dirname $0`"
+#echo "The present working directory is `pwd`"
+echo ''
+dir=$(pwd)
+echo "dir== $dir"
+unset -v latest
+  for file in "$dir"/crash-*.pklz; do
+  [[ $file -nt $latest ]] && latest=$file
+done
+
+echo "nipypecli crash $latest"
+
+nipypecli crash "$latest"
+}
 }

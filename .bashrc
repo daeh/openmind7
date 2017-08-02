@@ -16,15 +16,14 @@ prompt2="\[\e[1;39m\]\h:\[\e[0;34m\]\W\[\e[0m\]" # Add host:dir$
 PROMPT_COMMAND='PS1="\[\e[1;37m\e[44m\]${project_name}\[\e[0;0m\]${prompt1}${prompt2}🐹  "' # includes emoji in prompt
 
 # Project specific environments
-source "${HOME}"/.functions
-source "${HOME}"/.projects
-# source "${HOME}"/.custom_env
+source "${HOME}/.functions"
+source "${HOME}/.projects"
 
 # Command aliases
-alias interact="srun --x11 --mem=25000 --time=0-12:00:00 --pty bash"
+alias interact="srun --x11 --cpus-per-task=6 --mem=25GB --time=0-12:00:00 --pty bash"
 alias interactmin="srun --x11 --mem=8000 --time=0-4:00:00 --pty bash"
-alias interactmid="srun --x11 --cpus-per-task=10 --mem=40GB --time=1-12:00:00 --pty bash"
-alias interactmax="srun --x11 --cpus-per-task=15 --mem=100GB --time=1-12:00:00 --pty bash"
+alias interactmid="srun --x11 --cpus-per-task=10 --mem=60GB --time=1-12:00:00 --pty bash"
+alias interactmax="srun --x11 --cpus-per-task=16 --mem=200GB --time=1-12:00:00 --pty bash"
 alias interactquick="srun --x11 --mem=8000 --time=0-3:00:00 --pty bash"
 
 # Project specific aliases
