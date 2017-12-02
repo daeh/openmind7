@@ -28,12 +28,13 @@ alias interactquick="srun --x11 --mem=8000 --time=0-3:00:00 --pty bash"
 
 # Project specific aliases
 alias omhome="cd /om/user/daeda"
+alias om2home="cd /om/user/daeda"
 alias mhhome="cd /mindhive/gablab/u/daeda"
 alias adhda="cd /gablab/p/ADHDER/data/ADHDER"
+alias adhdb="cd /gablab/p/ADHDER/data/ADHDER_BIDS"
 alias adhdd="cd /gablab/p/ADHDER/dicom_storage/ADHDER"
 
-# Personal BASH Features 
+# Personal BASH Features
 alias ls="ls --color=auto"
 alias mkdir='mkdir -p' # Make dir but create intermediary dirs
 bind "set completion-ignore-case on" # ignore file case
-

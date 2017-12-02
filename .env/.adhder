@@ -8,4 +8,4 @@ source "$HOME/.functions"
 tb_nipype
 
 # Set directory aliases
-alias phome=""
+alias phome="cd /gablab/p/ADHDER/data/ADHDER"

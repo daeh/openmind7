@@ -4,11 +4,11 @@ function tb_matlab()
 {
 	echo ''
 	echo 'loading matlab functions'
-	
-	module add mit/matlab/2017a
+
+	module add mit/matlab/2017b
 	alias matlabcl="matlab -nodesktop -nosplash -nodisplay -singleCompThread"
 	alias matlabclgreedy="matlab -nodesktop -nosplash -nodisplay"
-	
+
 	echo "$PATH"
 	echo ''
 	echo ''
@@ -20,7 +20,7 @@ function tb_webppl()
 	echo 'loading webppl functions'
 
 	export PATH="/om/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
-	
+
 	echo "$PATH"
 	echo ''
 	echo ''
@@ -30,9 +30,10 @@ function tb_fmriprep()
 {
 	echo ''
 	echo 'loading fmriprep functions'
-	
+
+	module add openmind/gcc/5.3.0
 	module add openmind/singularity/2.3.1
-	
+
 	echo "$PATH"
 	echo ''
 	echo ''
@@ -42,8 +43,8 @@ function tb_nipype()
 {
 	echo 'loading nipype functions'
 
+	tb_matlab
 	module add openmind/gcc/5.3.0
-	module add mit/matlab/2017a
 	module add openmind/ants/2.1.0-3.8bed08
 	module add openmind/freesurfer/6.0.0
 	module add openmind/fsl/5.0.9
@@ -61,19 +62,19 @@ function tb_nipype()
 	echo ''
 
 	function nicrash()
-{
-#echo "The script you are running has basename `basename $0`, dirname `dirname $0`"
-#echo "The present working directory is `pwd`"
-echo ''
-dir=$(pwd)
-echo "dir== $dir"
-unset -v latest
-  for file in "$dir"/crash-*.pklz; do
-  [[ $file -nt $latest ]] && latest=$file
-done
+	{
+		#echo "The script you are running has basename `basename $0`, dirname `dirname $0`"
+		#echo "The present working directory is `pwd`"
+		echo ''
+		dir=$(pwd)
+		echo "dir== $dir"
+		unset -v latest
+		  for file in "$dir"/crash-*.pklz; do
+		  [[ $file -nt $latest ]] && latest=$file
+		done
 
-echo "nipypecli crash $latest"
+		echo "nipypecli crash $latest"
 
-nipypecli crash "$latest"
-}
+		nipypecli crash "$latest"
+	}
 }
