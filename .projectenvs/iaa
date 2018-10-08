@@ -5,11 +5,10 @@ export project_name="ITE_IAA"
 
 # Call appropriate functions from ~/.functions
 source "$HOME/.functions"
-tb_conda
 tb_webppl
 
 # Set directory aliases
 alias phome="cd /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code"
 cd /om/user/daeda/ite_iaa/ite_gb_inverseappraisal || exit
-source activate envs/default
+conda activate envs/default
 cd code || exit
