@@ -39,7 +39,7 @@ function tb_fmriprep()
 	echo 'loading fmriprep functions'
 
 	module add openmind/gcc/5.3.0
-	module add openmind/singularity/2.5.1
+	module add openmind/singularity/2.6.0
 
 	echo "$PATH"
 	echo ''
@@ -55,9 +55,15 @@ function tb_nipype()
 	tb_matlab
 	module add openmind/gcc/5.3.0
 	module add openmind/ants/2.1.0-3.8bed08
-	module add openmind/fsl/5.0.9
 	module add openmind/afni/2016.03.08
 	module add openmind/slicer/4.6.2
+
+	# module add openmind/fsl/5.0.9 ###SYSTEM FSL
+	# FSL Setup -- saxelab custom
+	FSLDIR=/om3/group/saxelab/software/fsl
+	PATH=${FSLDIR}/bin:${PATH}
+	export FSLDIR PATH
+	. ${FSLDIR}/etc/fslconf/fsl.sh
 	
 	# module add openmind/freesurfer/6.0.0
 	export FREESURFER_HOME=/om2/user/daeda/software/freesurfer
@@ -67,7 +73,7 @@ function tb_nipype()
 	echo ""
 
 	# Needed for nipype
-	export SPM_PATH="/om2/user/daeda/software/spm12_modified"
+	export SPM_PATH="/om2/user/daeda/software/spm12"
 
 	echo "$PATH"
 	echo ''
@@ -89,26 +95,6 @@ function tb_nipype()
 
 		nipypecli crash "$latest"
 	}
-}
-
-function tb_updateconda()
-{
-	tb_conda
-
-	### UPDATE
-	conda update -n base conda
-	conda update conda
-	conda update anaconda
-	conda update --all
-	conda update conda
-	conda update anaconda
-	conda update -n webconda --all
-
-	npm i npm
-	npm i -g npm
-	npm update -g
-	npm --depth 9999 update
-	npm update -g webppl
 }
 
 function launchkernel_iaa()

@@ -10,5 +10,7 @@ tb_webppl
 # Set directory aliases
 alias phome="cd /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code"
 cd /om/user/daeda/ite_iaa/ite_gb_inverseappraisal || exit
+host_save=$HOST
 conda activate envs/default
+export HOST=$host_save
 cd code || exit
