@@ -2,15 +2,46 @@
 
 function env_adhder()
 {
-source "$HOME/.projectenvs/adhder"
+	# Set command line prompt
+	export project_name="ADHDER"
+
+	# Call appropriate functions from ~/.functions
+	source "$HOME/.functions"
+	tb_nipype
+
+	# Set directory aliases
+	alias phome="cd /gablab/p/ADHDER/data/adhder_bids/"
+	phome || exit
 }
 
 function env_fmriprep()
 {
-source "$HOME/.projectenvs/fmriprep"
+	# Set command line prompt
+	export project_name="FMRIPREP"
+
+	# Call appropriate functions from ~/.functions
+	source "$HOME/.functions"
+	tb_fmriprep
+
+	# Set directory aliases
+	alias phome=""
 }
 
 function env_iaa()
 {
-source "$HOME/.projectenvs/iaa"
+	# Set command line prompt
+	export project_name="ITE_IAA"
+
+	# Call appropriate functions from ~/.functions
+	source "$HOME/.functions"
+	tb_webppl
+
+	# Set directory aliases
+	alias phome="cd /om/user/daeda/ite_iaa/ite_gb_inverseappraisal"
+	phome || exit
+	host_save=$HOST
+	conda activate envs/default
+	export HOST=$host_save
+	cd code || exit
+
 }

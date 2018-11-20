@@ -143,11 +143,12 @@ alias zprofile="vim ~/.zshrc"
 
 # Project specific aliases
 alias omhome="cd /om/user/daeda"
-alias om2home="cd /om/user/daeda"
+alias om2home="cd /om2/user/daeda"
 alias mhhome="cd /mindhive/gablab/u/daeda"
-alias adhda="cd /gablab/p/ADHDER/data/ADHDER"
-alias adhdb="cd /gablab/p/ADHDER/data/ADHDER_BIDS"
-alias adhdd="cd /gablab/p/ADHDER/dicom_storage/ADHDER"
+
+alias adhda="cd /gablab/p/ADHDER/data/adhder"
+alias adhdcode="cd /gablab/p/ADHDER/data/adhder/code"
+alias adhdsource="cd /storage/gablab001/data/dicoms/adhder"
 
 # Personal BASH Features
 alias mkdir='mkdir -p' # Make dir but create intermediary dirs

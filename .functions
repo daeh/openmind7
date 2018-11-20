@@ -26,7 +26,7 @@ function tb_webppl()
         echo 'loading webppl functions'
 
         export PATH="/om2/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
-	tb_conda
+        tb_conda
 
         echo "$PATH"
         echo ''
@@ -38,8 +38,9 @@ function tb_fmriprep()
 	echo ''
 	echo 'loading fmriprep functions'
 
-	module add openmind/gcc/5.3.0
-	module add openmind/singularity/2.6.0
+	module add openmpi/gcc/64/1.8.1
+	module add openmind/singularity/3.0
+	export FREESURFER_HOME=/om2/user/daeda/software/freesurfer
 
 	echo "$PATH"
 	echo ''
@@ -50,9 +51,11 @@ function tb_nipype()
 {
 	tb_conda
 	echo 'loading nipype functions'
+
 	conda activate niconda
 
 	tb_matlab
+	
 	module add openmind/gcc/5.3.0
 	module add openmind/ants/2.1.0-3.8bed08
 	module add openmind/afni/2016.03.08
