@@ -2,8 +2,8 @@
 
 function tb_conda()
 {
-        source /om2/user/daeda/software/anaconda3/etc/profile.d/conda.sh
-        export PATH="/om2/user/daeda/software/anaconda3/bin:$PATH"
+	source /om2/user/daeda/software/anaconda3/etc/profile.d/conda.sh
+	export PATH="/om2/user/daeda/software/anaconda3/bin:$PATH"
 }
 
 function tb_matlab()
@@ -22,15 +22,15 @@ function tb_matlab()
 
 function tb_webppl()
 {
-        echo ''
-        echo 'loading webppl functions'
+	echo ''
+	echo 'loading webppl functions'
 
-        export PATH="/om2/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
-        tb_conda
+	export PATH="/om2/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
+	tb_conda
 
-        echo "$PATH"
-        echo ''
-        echo ''
+	echo "$PATH"
+	echo ''
+	echo ''
 }
 
 function tb_fmriprep()
@@ -40,7 +40,6 @@ function tb_fmriprep()
 
 	module add openmpi/gcc/64/1.8.1
 	module add openmind/singularity/3.0
-	export FREESURFER_HOME=/om2/user/daeda/software/freesurfer
 
 	echo "$PATH"
 	echo ''
@@ -49,34 +48,47 @@ function tb_fmriprep()
 
 function tb_nipype()
 {
+	# load the 'module' command for the current shell
+	source /usr/share/Modules/init/bash
+	source /usr/share/Modules/init/zsh
+
 	tb_conda
 	echo 'loading nipype functions'
 
 	conda activate niconda
 
 	tb_matlab
+
+	# Needed for nipype
+	export SPM_PATH="/om2/user/daeda/software/spm12"
 	
 	module add openmind/gcc/5.3.0
 	module add openmind/ants/2.1.0-3.8bed08
 	module add openmind/afni/2016.03.08
 	module add openmind/slicer/4.6.2
 
-	# module add openmind/fsl/5.0.9 ###SYSTEM FSL
+	###SYSTEM FSL
+	# module add openmind/fsl/5.0.9 
+
+	###CUSTOM FSL
 	# FSL Setup -- saxelab custom
 	FSLDIR=/om3/group/saxelab/software/fsl
 	PATH=${FSLDIR}/bin:${PATH}
 	export FSLDIR PATH
 	. ${FSLDIR}/etc/fslconf/fsl.sh
 	
+	###SYSTEM freesurfer
 	# module add openmind/freesurfer/6.0.0
-	export FREESURFER_HOME=/om2/user/daeda/software/freesurfer
+
+	###CUSTOM freesurfer
+	export FREESURFER_HOME=/om2/user/daeda/software/freesurfer ### 6.0.1
 	source $FREESURFER_HOME/SetUpFreeSurfer.sh
+	export FS_LICENSE='/gablab/p/ADHDER/data/adhder/code/license.txt'
 	echo "set default number of threads using:"
 	echo "export ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=2"
 	echo ""
-
-	# Needed for nipype
-	export SPM_PATH="/om2/user/daeda/software/spm12"
+	echo "remember to >>export FREESURFER_HOME=<subjects_dir><< before use"
+	echo ""
 
 	echo "$PATH"
 	echo ''
@@ -108,7 +120,22 @@ function launchkernel_iaa()
 	numeric_string_only=${slurmout//[^0-9]/}
 	# echo "${numeric_string_only}"
 	logfile="../logs/jupyter-log-${numeric_string_only}.txt"
-	while ! [ -f ${logfile} ]; do
+	while ! [ -f "${logfile}" ]; do
+		printf "#"
+		sleep 2
+	done
+	tail -f -n 50 "${logfile}"
+}
+
+function launchkernel_adhder()
+{
+	cd "/gablab/p/ADHDER/data/adhder/code/analysis/" || exit 
+	slurmout="$(sbatch launch_remote_kernel.sbatch)"
+	echo "${slurmout}"
+	numeric_string_only=${slurmout//[^0-9]/}
+	# echo "${numeric_string_only}"
+	logfile="logs/jupyter-log-${numeric_string_only}.txt"
+	while ! [ -f "${logfile}" ]; do
 		printf "#"
 		sleep 2
 	done

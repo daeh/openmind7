@@ -8,10 +8,12 @@ function env_adhder()
 	# Call appropriate functions from ~/.functions
 	source "$HOME/.functions"
 	tb_nipype
+	export SUBJECTS_DIR='/gablab/p/ADHDER/data/adhder/derivatives/freesurfer'
+	echo 'freesurfer ${SUBJECTS_DIR} set to /gablab/p/ADHDER/data/adhder/derivatives/freesurfer'
 
 	# Set directory aliases
-	alias phome="cd /gablab/p/ADHDER/data/adhder_bids/"
-	phome || exit
+	alias phome="/gablab/p/ADHDER/data/adhder/"
+	cd /gablab/p/ADHDER/data/adhder || exit
 }
 
 function env_fmriprep()
@@ -24,7 +26,7 @@ function env_fmriprep()
 	tb_fmriprep
 
 	# Set directory aliases
-	alias phome=""
+	alias phome="/gablab/p/ADHDER/data/adhder/"
 }
 
 function env_iaa()
@@ -37,8 +39,8 @@ function env_iaa()
 	tb_webppl
 
 	# Set directory aliases
-	alias phome="cd /om/user/daeda/ite_iaa/ite_gb_inverseappraisal"
-	phome || exit
+	alias phome="/om/user/daeda/ite_iaa/ite_gb_inverseappraisal"
+	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal" || exit
 	host_save=$HOST
 	conda activate envs/default
 	export HOST=$host_save
