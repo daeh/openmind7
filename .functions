@@ -2,8 +2,29 @@
 
 function tb_conda()
 {
-	source /om2/user/daeda/software/anaconda3/etc/profile.d/conda.sh
-	export PATH="/om2/user/daeda/software/anaconda3/bin:$PATH"
+	
+	echo ''
+	echo 'loading conda'
+
+	# >>> conda initialize >>>
+	# !! Contents within this block are managed by 'conda init' !!
+	__conda_setup="$('/Users/daeda/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+	if [ $? -eq 0 ]; then
+		eval "$__conda_setup"
+	else
+		if [ -f "/om2/user/daeda/software/anaconda3/etc/profile.d/conda.sh" ]; then
+			. "/om2/user/daeda/software/anaconda3/etc/profile.d/conda.sh"
+		else
+			export PATH="/om2/user/daeda/software/anaconda3/bin:$PATH"
+		fi
+	fi
+	unset __conda_setup
+	# <<< conda initialize <<<
+
+	echo ''
+	echo ">>>conda version:"
+	which conda
+	conda -V
 }
 
 function tb_matlab()
@@ -11,10 +32,15 @@ function tb_matlab()
 	echo ''
 	echo 'loading matlab functions'
 
+	source /usr/share/Modules/init/bash
+	source /usr/share/Modules/init/zsh
+
 	module add mit/matlab/2018a
 	alias matlabcl="matlab -nodesktop -nosplash -nodisplay -singleCompThread"
 	alias matlabclgreedy="matlab -nodesktop -nosplash -nodisplay"
 
+	echo ''
+	echo 'PATH:'
 	echo "$PATH"
 	echo ''
 	echo ''
@@ -25,9 +51,27 @@ function tb_webppl()
 	echo ''
 	echo 'loading webppl functions'
 
+
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+	echo ''
+	echo 'loading webppl functions'
+
 	export PATH="/om2/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
+
+	echo ">>>node version:"
+	npm version
+	echo ">>>WebPPL version:"
+	npm list -g webppl
+	echo ">>>WebPPL version:"
+	webppl --version
+
 	tb_conda
 
+	echo ''
+	echo 'PATH:'
 	echo "$PATH"
 	echo ''
 	echo ''
@@ -38,8 +82,11 @@ function tb_fmriprep()
 	echo ''
 	echo 'loading fmriprep functions'
 
+	source /usr/share/Modules/init/bash
+	source /usr/share/Modules/init/zsh
+
 	module add openmpi/gcc/64/1.8.1
-	module add openmind/singularity/3.0
+	module add openmind/singularity/3.0.3
 
 	echo "$PATH"
 	echo ''
@@ -141,3 +188,4 @@ function launchkernel_adhder()
 	done
 	tail -f -n 50 "${logfile}"
 }
+
