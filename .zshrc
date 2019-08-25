@@ -1,6 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+### for current tmux install
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/daeda/local/lib
+export PATH=$HOME/local/bin:$PATH 
+
+ZSH_TMUX_ITERM2="true"
+
 # Path to your oh-my-zsh installation.
 export ZSH=/home/daeda/.oh-my-zsh
 
@@ -58,10 +64,15 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 plugins=(
-  git
   zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-completions
+  tmux
+  #fzf
 )
+autoload -U compinit && compinit ### for zsh-completions
 
 source $ZSH/oh-my-zsh.sh
 
@@ -135,7 +146,7 @@ alias interactiaaheavy="srun --x11 --cpus-per-task=25 --mem=60G --time=1-12:00:0
 alias interactiaaquick="srun --x11 --cpus-per-task=25 --mem=60G -p om_bigmem --pty zsh" # time limit is 1h
 
 ### Slurm aliases
-alias que="squeue -u daeda"
+alias que='squeue -u daeda --format="%.18i %.20j %.9P %.2t %.10M %.10l %.7c %.7m %.6D %R"'
 alias info='sinfo -N -o "%N, %c, %C, %e, %E, %G, %m, %T, %z"'
 alias sacctfin="sacct --format=jobid,jobname%40,maxvmsize,maxrss,maxpages,alloccpus,elapsed,exitcode,maxdiskread,maxdiskwrite,state"
 
@@ -144,13 +155,8 @@ alias omhome="cd /om/user/daeda"
 alias om2home="cd /om2/user/daeda"
 alias mhhome="cd /mindhive/gablab/u/daeda"
 
-### Project-specific location aliases
-alias adhda="cd /gablab/p/ADHDER/data/adhder"
-alias adhdcode="cd /gablab/p/ADHDER/data/adhder/code"
-alias adhdsource="cd /storage/gablab001/data/dicoms/adhder"
-
 # Personal BASH Features
-alias mkdir='mkdir -p' # Make dir but create intermediary dirs
+# alias mkdir='mkdir -p' # Make dir but create intermediary dirs
 
 # If not running interactively, we're done
 [ -z "$PS1" ] && return

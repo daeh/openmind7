@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/zsh
 
 function tb_conda()
 {
@@ -51,15 +51,18 @@ function tb_webppl()
 	echo ''
 	echo 'loading webppl functions'
 
+	echo ''
+	echo 'loading NVM'
 
 	export NVM_DIR="$HOME/.nvm"
 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 	echo ''
-	echo 'loading webppl functions'
+	echo 'loading node'
 
-	export PATH="/om2/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
+	# export PATH="/om2/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
+	export PATH="/om2/user/daeda/software/node-v10.16.3-linux-x64/bin/:$PATH"
 
 	echo ">>>node version:"
 	npm version
@@ -171,7 +174,22 @@ function launchkernel_iaa()
 		printf "#"
 		sleep 2
 	done
-	tail -f -n 50 "${logfile}"
+	tail -f -n 70 "${logfile}"
+}
+
+function launchkernel_iaa_bigmem()
+{
+	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/" || exit 
+	slurmout="$(sbatch launch_remote_kernel_bigmem.sbatch)"
+	echo "${slurmout}"
+	numeric_string_only=${slurmout//[^0-9]/}
+	# echo "${numeric_string_only}"
+	logfile="../logs/jupyter-log-${numeric_string_only}.txt"
+	while ! [ -f "${logfile}" ]; do
+		printf "#"
+		sleep 2
+	done
+	tail -f -n 70 "${logfile}"
 }
 
 function launchkernel_adhder()
@@ -186,6 +204,6 @@ function launchkernel_adhder()
 		printf "#"
 		sleep 2
 	done
-	tail -f -n 50 "${logfile}"
+	tail -f -n 70 "${logfile}"
 }
 
