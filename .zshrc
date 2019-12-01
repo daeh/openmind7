@@ -131,12 +131,12 @@ source "${HOME}/.functions"
 source "${HOME}/.projects"
 
 ### Command aliases
-alias o="/om2/user/daeda/software/rmate"
+alias o="/om/user/daeda/software/rmate"
 alias zprofile="vim ~/.zshrc"
 
 ### srun alises
 alias interact="srun --x11 --cpus-per-task=6 --mem=25G --time=1-00:00:00 --pty zsh"
-alias interactqos="srun --x11 --cpus-per-task=2 --mem=4G --time=1-00:00:00 --qos=gablab --pty zsh"
+alias interactqos="srun --x11 --cpus-per-task=2 --mem=4G --time=1-00:00:00 --partition=gablab --pty zsh"
 alias interactmin="srun --x11 --mem=4G --time=0-4:00:00 --pty zsh"
 alias interactmid="srun --x11 --cpus-per-task=10 --mem=60G --time=1-12:00:00 --pty zsh"
 alias interactmax="srun --x11 --cpus-per-task=16 --mem=100G --time=1-12:00:00 --pty zsh"
@@ -160,3 +160,5 @@ alias mhhome="cd /mindhive/gablab/u/daeda"
 
 # If not running interactively, we're done
 [ -z "$PS1" ] && return
+
+

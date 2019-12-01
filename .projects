@@ -2,6 +2,7 @@
 
 ### Project-specific location aliases
 alias projadhd="cd /gablab/p/ADHDER/data/adhder"
+alias projadhdc="cd /gablab/p/ADHDER/data/adhder/behavioral"
 alias projadhdc="cd /gablab/p/ADHDER/data/adhder/code"
 alias projadhdsource="cd /storage/gablab001/data/dicoms/adhder"
 

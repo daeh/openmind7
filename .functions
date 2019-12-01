@@ -8,14 +8,14 @@ function tb_conda()
 
 	# >>> conda initialize >>>
 	# !! Contents within this block are managed by 'conda init' !!
-	__conda_setup="$('/Users/daeda/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+	__conda_setup="$('/om/user/daeda/software/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 	if [ $? -eq 0 ]; then
 		eval "$__conda_setup"
 	else
-		if [ -f "/om2/user/daeda/software/anaconda3/etc/profile.d/conda.sh" ]; then
-			. "/om2/user/daeda/software/anaconda3/etc/profile.d/conda.sh"
+		if [ -f "/om/user/daeda/software/anaconda3/etc/profile.d/conda.sh" ]; then
+			. "/om/user/daeda/software/anaconda3/etc/profile.d/conda.sh"
 		else
-			export PATH="/om2/user/daeda/software/anaconda3/bin:$PATH"
+			export PATH="/om/user/daeda/software/anaconda3/bin:$PATH"
 		fi
 	fi
 	unset __conda_setup
@@ -25,6 +25,8 @@ function tb_conda()
 	echo ">>>conda version:"
 	which conda
 	conda -V
+
+	conda activate omlab
 }
 
 function tb_matlab()
@@ -32,10 +34,10 @@ function tb_matlab()
 	echo ''
 	echo 'loading matlab functions'
 
-	source /usr/share/Modules/init/bash
+	# source /usr/share/Modules/init/bash
 	source /usr/share/Modules/init/zsh
 
-	module add mit/matlab/2018a
+	module add mit/matlab/2019a
 	alias matlabcl="matlab -nodesktop -nosplash -nodisplay -singleCompThread"
 	alias matlabclgreedy="matlab -nodesktop -nosplash -nodisplay"
 
@@ -56,13 +58,13 @@ function tb_webppl()
 
 	export NVM_DIR="$HOME/.nvm"
 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+	[ -s "$NVM_DIR/zsh_completion" ] && \. "$NVM_DIR/zsh_completion"  # This loads nvm bash_completion
 
 	echo ''
 	echo 'loading node'
 
 	# export PATH="/om2/user/daeda/software/node-v6.10.3-linux-x64/bin/:$PATH"
-	export PATH="/om2/user/daeda/software/node-v10.16.3-linux-x64/bin/:$PATH"
+	export PATH="/om/user/daeda/software/node-v10.16.3-linux-x64/bin/:$PATH"
 
 	echo ">>>node version:"
 	npm version
@@ -85,11 +87,11 @@ function tb_fmriprep()
 	echo ''
 	echo 'loading fmriprep functions'
 
-	source /usr/share/Modules/init/bash
+	# source /usr/share/Modules/init/bash
 	source /usr/share/Modules/init/zsh
 
 	module add openmpi/gcc/64/1.8.1
-	module add openmind/singularity/3.0.3
+	module add openmind/singularity/3.4.1  ### previously used 3.0.3
 
 	echo "$PATH"
 	echo ''
@@ -99,7 +101,7 @@ function tb_fmriprep()
 function tb_nipype()
 {
 	# load the 'module' command for the current shell
-	source /usr/share/Modules/init/bash
+	# source /usr/share/Modules/init/bash
 	source /usr/share/Modules/init/zsh
 
 	tb_conda
@@ -162,6 +164,32 @@ function tb_nipype()
 	}
 }
 
+function launchkernel_iaa_tmux()
+{
+	# "tmuxp_script.yaml in code"
+	# "calls launchkernel_iaa() from ~/.functions"
+	# "    links current logfile in ~/.tmux_temp_/current_iaa_remotelog.txt"
+	# "    can be called with launchkernel_iaa_head() from ~/.functions"
+	# "calls sbatch launch_remote_kernel.sbatch in code"
+	# "    writes ../logs/jupyter-log-currenttunnel.txt"
+	# "    can be called with getssh_iaa() from ~/.functions"
+
+	tb_conda
+	
+	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/" || exit 
+
+	tmux kill-session -t IAA-kernel
+
+	tmuxp load ./tmuxp_script.yaml
+}
+
+function launchkernel_iaa_head()
+{
+	tmux_temp_dir="/om/user/daeda/.tmux_temp_"
+	echo "${tmux_temp_dir}/current_iaa_remotelog.txt"
+	nano "${tmux_temp_dir}/current_iaa_remotelog.txt"
+}
+
 function launchkernel_iaa()
 {
 	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/" || exit 
@@ -170,11 +198,27 @@ function launchkernel_iaa()
 	numeric_string_only=${slurmout//[^0-9]/}
 	# echo "${numeric_string_only}"
 	logfile="../logs/jupyter-log-${numeric_string_only}.txt"
+
+	### store current logfile location
+	tmux_temp_dir="/om/user/daeda/.tmux_temp_"
+	if [[ ! -e $tmux_temp_dir ]]; then
+		mkdir $tmux_temp_dir
+	# elif [[ ! -d $dir ]]; then
+	# 	echo "$Message" 1>&2
+	fi
+
 	while ! [ -f "${logfile}" ]; do
 		printf "#"
 		sleep 2
 	done
+	ln "${logfile}" "${tmux_temp_dir}/current_iaa_remotelog.txt"
+
 	tail -f -n 70 "${logfile}"
+}
+
+function getssh_iaa()
+{
+	tail "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/logs/jupyter-log-currenttunnel.txt" || exit
 }
 
 function launchkernel_iaa_bigmem()
