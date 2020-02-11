@@ -30,7 +30,9 @@ conda update -n omlab --all -c anaconda
 pip install --upgrade pip
 pip install -U tmuxp
 
-env_iaa
+env_iaa  ### currently needs xarray  0.14.0, pandas 0.25.3
+
+env_iaa_pyro
 conda update -c anaconda anaconda
 conda update -c anaconda python
 conda update --all -c pytorch -c anaconda

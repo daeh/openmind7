@@ -117,6 +117,7 @@ source $ZSH/oh-my-zsh.sh
 # OM features
 module add openmind/gcc/5.3.0 # needed to lauch sbatch jobs
 module add slurm
+module add openmind/git/2.7.0
 
 PROMPT='%{$fg_bold[blue]%}[%T]\
 %{$fg_bold[white]%}%m\
@@ -132,7 +133,7 @@ source "${HOME}/.projects"
 
 ### Command aliases
 alias o="/om/user/daeda/software/rmate"
-alias zprofile="vim ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
 
 ### srun alises
 alias interact="srun --x11 --cpus-per-task=6 --mem=25G --time=1-00:00:00 --pty zsh"

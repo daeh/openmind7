@@ -1,4 +1,4 @@
-#! /bin/zsh
+#! /usr/bin/env zsh
 
 ### Project-specific location aliases
 alias projadhd="cd /gablab/p/ADHDER/data/adhder"
@@ -8,6 +8,7 @@ alias projadhdsource="cd /storage/gablab001/data/dicoms/adhder"
 
 alias projiaa="cd /om/user/daeda/ite_iaa/ite_gb_inverseappraisal"
 alias projiaac="cd /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code"
+alias projiaadata="cd /om2/user/daeda/iaa_dataout"
 
 function env_adhder()
 {
@@ -55,4 +56,21 @@ function env_iaa()
 	export HOST=$host_save
 	cd code || exit
 
+}
+function env_iaa_pyro()
+{
+	# Set command line prompt
+	export project_name="ITE_IAApyro"
+
+	# Call appropriate functions from ~/.functions
+	source "$HOME/.functions"
+	tb_webppl
+
+	# Set directory aliases
+	alias phome="/om/user/daeda/ite_iaa/ite_gb_inverseappraisal"
+	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal" || exit
+	host_save=$HOST
+	conda activate envs/pyro
+	export HOST=$host_save
+	cd code || exit
 }
