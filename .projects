@@ -70,7 +70,7 @@ function env_iaa_pyro()
 	alias phome="/om/user/daeda/ite_iaa/ite_gb_inverseappraisal"
 	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal" || exit
 	host_save=$HOST
-	conda activate envs/pyro
+	conda activate iaa_ve #envs/pyro
 	export HOST=$host_save
 	cd code || exit
 }

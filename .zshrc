@@ -147,9 +147,9 @@ alias interactiaaheavy="srun --x11 --cpus-per-task=25 --mem=60G --time=1-12:00:0
 alias interactiaaquick="srun --x11 --cpus-per-task=25 --mem=60G -p om_bigmem --pty zsh" # time limit is 1h
 
 ### Slurm aliases
-alias que='squeue -u daeda --format="%.18i %.20j %.9P %.2t %.10M %.10l %.7c %.7m %.6D %R"'
-alias info='sinfo -N -o "%N, %c, %C, %e, %E, %G, %m, %T, %z"'
-alias sacctfin="sacct --format=jobid,jobname%40,maxvmsize,maxrss,maxpages,alloccpus,elapsed,exitcode,maxdiskread,maxdiskwrite,state"
+alias ssque='squeue -u daeda --format="%.18i %.20j %.9P %.2t %.10M %.10l %.7c %.7m %.6D %R"'
+alias ssinfo='sinfo -N -o "%N, %c, %C, %e, %E, %G, %m, %T, %z"'
+alias ssacctfin="sacct --format=jobid,jobname%40,maxvmsize,maxrss,maxpages,alloccpus,elapsed,exitcode,maxdiskread,maxdiskwrite,state"
 
 ### Cluster location aliases
 alias omhome="cd /om/user/daeda"

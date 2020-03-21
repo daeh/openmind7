@@ -11,8 +11,8 @@
 ~Msle0~/\<export\>
 
 # Command Line History (newest to oldest):
-:w
 :q
+:w
 :u
 :q!
 :set mouse=a
@@ -28,6 +28,26 @@
 # Input Line History (newest to oldest):
 
 # Registers:
+"0	CHAR	0
+	/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/webpypl_importjson.py:228: UserWarning: No prospect transformation being applied to the WEBPPL data
+	  warnings.warn('No prospect transformation being applied to the WEBPPL data')
+	/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/webpypl_importjson.py:228: UserWarning: No prospect transformation being applied to the WEBPPL data
+	  warnings.warn('No prospect transformation being applied to the WEBPPL data')
+	/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/webpypl_importjson.py:228: UserWarning: No prospect transformation being applied to the WEBPPL data
+	  warnings.warn('No prospect transformation being applied to the WEBPPL data')
+	/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/webpypl_importjson.py:228: UserWarning: No prospect transformation being applied to the WEBPPL data
+	  warnings.warn('No prospect transformation being applied to the WEBPPL data')
+	Traceback (most recent call last):
+	  File "iaa_gendata_webppl.py", line 49, in <module>
+	    gendata_webppl(load_data_cpar(**_cli()))
+	  File "iaa_gendata_webppl.py", line 19, in gendata_webppl
+	    followup_analyses(cpar, ppldata, ppldata_exp3, distal_prior_ppldata)
+	  File "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/iaa_runwebppl_followup.py", line 22, in followup_analyses
+	    _ = printFigList( run_inversePlanningAnalysis(ppldata, paths, plot_param['display_param'], {**plot_param, **cpar.plot_control['set1aba']}), plot_param )
+	  File "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/webpypl_analysis_inverseplanning.py", line 260, in run_inversePlanningAnalysis
+	    d[decision] = np.full(( len(ppldata['labels']['baseFeatures']), len(ppldata['pots_byoutcome'+suffix][decision]) ), np.nan)
+	KeyError: 'C'
+	
 "1	LINE	0
 			  [[ $file -nt $latest ]] && latest=$file
 			done
@@ -71,22 +91,28 @@
 		echo "${numeric_string_only}"
 		tail -f -n 50 "../logs/jupyter-log-${numeric_string_only}.txt"
 ""-	CHAR	0
-	the following line if you want to disable 
+	q
 
 # File marks:
-'0  1  0  ~/.zshrc
-'1  129  9  ~/.zshrc
-'2  44  12  ~/.zshrc
-'3  15  6  ~/.projectenvs/iaa
-'4  1  0  ~/.functions
-'5  144  0  ~/.zshrc
-'6  98  29  ~/.functions
-'7  76  47  ~/.functions
-'8  18  32  ~/matlab/startup.m
-'9  35  23  ~/matlab/startup.m
+'0  118  16  ~/.zshrc
+'1  151  62  ~/.zshrc
+'2  152  6  ~/.zshrc
+'3  100  0  ~/.zshrc
+'4  1287  0  /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/logs/sbatchlog-iaa_runwppl_16189572_stdout.txt
+'5  1  0  ~/.zshrc
+'6  129  9  ~/.zshrc
+'7  44  12  ~/.zshrc
+'8  15  6  ~/.projectenvs/iaa
+'9  1  0  ~/.functions
 
 # Jumplist (newest first):
+-'  118  16  ~/.zshrc
+-'  151  0  ~/.zshrc
+-'  152  0  ~/.zshrc
+-'  100  0  ~/.zshrc
 -'  1  0  ~/.zshrc
+-'  1287  0  /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/logs/sbatchlog-iaa_runwppl_16189572_stdout.txt
+-'  1  0  /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/logs/sbatchlog-iaa_runwppl_16189572_stdout.txt
 -'  129  0  ~/.zshrc
 -'  44  0  ~/.zshrc
 -'  144  0  ~/.zshrc
@@ -108,7 +134,6 @@
 -'  6  8  ~/.functions
 -'  53  1  ~/.functions
 -'  8  0  ~/.functions
--'  151  0  ~/.zshrc
 -'  1  0  ~/.projectenvs/iaa
 -'  92  22  ~/.functions
 -'  100  1  ~/.functions
@@ -179,17 +204,13 @@
 -'  1  0  ~./bashrc
 -'  1  0  ~./bashrc
 -'  1  0  ~./bashrc
--'  1  0  ~./bashrc
--'  1  0  ~./bashrc
--'  1  0  ~./bashrc
--'  1  0  ~./bashrc
 
 # History of marks within files (newest to oldest):
 
 > ~/.zshrc
-	"	1	0
-	^	1	0
-	.	1	0
+	"	118	16
+	^	152	7
+	.	152	7
 	+	143	61
 	+	139	60
 	+	137	20
@@ -203,6 +224,12 @@
 	+	1	51
 	+	1	93
 	+	1	0
+	+	150	8
+	+	151	7
+	+	152	7
+
+> /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/logs/sbatchlog-iaa_runwppl_16189572_stdout.txt
+	"	1287	0
 
 > ~/.functions
 	"	169	0
