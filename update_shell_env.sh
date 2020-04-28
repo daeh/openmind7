@@ -20,25 +20,29 @@ git pull --rebase --stat origin master
 
 cd ~ || exit
 
+
 conda update -n base -c defaults conda
 conda update -n base -c defaults python
 
-conda update -n omlab -c anaconda anaconda
-conda update -n omlab -c anaconda python
-conda update -n omlab --all -c anaconda
+conda update -n omlab -c defaults anaconda
+conda update -n omlab -c defaults python
+conda update -n omlab --all -c defaults
 
 pip install --upgrade pip
 pip install -U tmuxp
 
-env_iaa  ### currently needs xarray  0.14.0, pandas 0.25.3
-
+#######
 env_iaa_pyro
-conda update -c anaconda anaconda
-conda update -c anaconda python
-conda update --all -c pytorch -c anaconda
+conda update -c conda-forge anaconda
+conda update -c conda-forge python
+conda update --all -c pytorch -c conda-forge
 pip install --upgrade pip
 pip install -U tmuxp
 
+conda clean --all
+
+
+#######
 node -v
 ##### https://johnpapa.net/node-and-npm-without-sudo/
 # Install Node.js from https://nodejs.org/en/download/
@@ -48,3 +52,4 @@ npm install -g npm
 npm update -g jshint
 npm update -g webppl
 npm install --prefix ~/.webppl webppl-json --force
+
