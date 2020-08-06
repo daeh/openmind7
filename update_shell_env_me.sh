@@ -164,16 +164,16 @@ export PATH=$path_extra:$PATH
 
 # Dotfiles
 if [ ! -d $INSTALL_TO/me ]; then
-	git clone https://github.com/insperatum/me.git $INSTALL_TO/me
+	git clone https://github.com/daeh/me.git $INSTALL_TO/me
 fi
 cd $INSTALL_TO/me
 git pull
 
 for dotfile in $(ls -a $INSTALL_TO/me/dotfiles | grep [^.]); do
 	echo Addding dotfile: $dotfile
-	if [ -L $HOME/$dotfile ]; then
+	if [ -L $HOME/$dotfile ]; then ### is symbolic link
 		rm $HOME/$dotfile	
-	elif [ -f $HOME/$dotfile ]; then
+	elif [ -f $HOME/$dotfile ]; then ### is file
 		mv $HOME/$dotfile $HOME/${dotfile}_$(date +"%F_%H.%M.%S")
 	fi
 	ln -s $INSTALL_TO/me/dotfiles/$dotfile $HOME/$dotfile
@@ -187,8 +187,11 @@ fi
 
 # Zsh plugins
 zshcustom=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
-if [ ! -f ${zshcustom}/bullet-train.zsh-theme ]; then
-	wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -O ${zshcustom}/bullet-train.zsh-theme
+# if [ ! -f ${zshcustom}/bullet-train.zsh-theme ]; then
+# 	wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -O ${zshcustom}/bullet-train.zsh-theme
+# fi
+if [ ! -d ${zshcustom}/themes/powerlevel10k ]; then
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${zshcustom}/themes/powerlevel10k
 fi
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${zshcustom}/plugins/zsh-autosuggestions

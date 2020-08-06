@@ -1,0 +1,4 @@
+export PATH=/home/daeda/me/zsh/bin:/home/daeda/me/vim/bin:/home/daeda/me/tmux/bin:/home/daeda/me/git/bin::$PATH
+export DEFAULT_TMUX_SHELL=/home/daeda/me/zsh/bin/zsh
+export ME_PATH=/home/daeda/me
+source $HOME/.me.conf

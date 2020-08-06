@@ -4,6 +4,7 @@ set nowrap
 set hlsearch
 set backspace=indent,eol,start
 
+
 ":set copyindent
 ":set preserveindent
 ":set softtabstop=0
@@ -13,6 +14,7 @@ set backspace=indent,eol,start
 "set noexpandtab
 "set shiftwidth=4
 "let g:python_recommended_style = 0
+
 
 "from https://dougblack.io/words/a-good-vimrc.html
 "set showcmd             " show command in bottom bar
@@ -30,12 +32,10 @@ set backspace=indent,eol,start
 "Shell
 set shell=/bin/zsh
 
+
+
 "Plugins
-call plug#begin()
-Plug 'https://github.com/terryma/vim-multiple-cursors.git'
-Plug 'https://github.com/chrisbra/NrrwRgn.git'
-Plug 'https://github.com/vim-syntastic/syntastic.git'
-call plug#end()
+
 
 "Syntastic
 set statusline+=%#warningmsg#
@@ -52,6 +52,10 @@ let g:syntastic_python_checkers = ['pyflakes']
 "tmux window name
 "autocmd BufEnter * call system('[ "$(tmux list-panes | wc -l)" -eq "1" ] && tmux rename-window ' . expand("%:t"))
 "autocmd VimLeave * call system('[ "$(tmux list-panes | wc -l)" -eq "1" ] && ttmux rename-window ...')
-"autocmd BufEnter * let &titlestring = ' ' . expand("%:t")                                                                 
+"autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
 
 set title
+
+
+
+
