@@ -1,3 +1,11 @@
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -13,7 +21,7 @@ export ZSH=/home/daeda/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -119,11 +127,11 @@ module add openmind/gcc/5.3.0 # needed to lauch sbatch jobs
 module add slurm
 module add openmind/git/2.7.0
 
-PROMPT='%{$fg_bold[blue]%}[%T]\
-%{$fg_bold[white]%}%m\
-${ret_status}\
-%{$fg[cyan]%}%c%{$reset_color%}🐹\
-$(git_prompt_info)'
+# PROMPT='%{$fg_bold[blue]%}[%T]\
+# %{$fg_bold[white]%}%m\
+# ${ret_status}\
+# %{$fg[cyan]%}%c%{$reset_color%}🐹\
+# $(git_prompt_info)'
 # host: %{$fg_bold[white]%}%M
 # arrow: %{$fg_bold[red]%}➜ 
 
@@ -162,4 +170,5 @@ alias mhhome="cd /mindhive/gablab/u/daeda"
 # If not running interactively, we're done
 [ -z "$PS1" ] && return
 
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

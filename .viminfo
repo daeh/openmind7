@@ -94,19 +94,22 @@
 	q
 
 # File marks:
-'0  118  16  ~/.zshrc
-'1  151  62  ~/.zshrc
-'2  152  6  ~/.zshrc
-'3  100  0  ~/.zshrc
-'4  1287  0  /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/logs/sbatchlog-iaa_runwppl_16189572_stdout.txt
-'5  1  0  ~/.zshrc
-'6  129  9  ~/.zshrc
-'7  44  12  ~/.zshrc
-'8  15  6  ~/.projectenvs/iaa
-'9  1  0  ~/.functions
+'0  118  0  ~/.zshrc
+'1  21  11  ~/update_shell_env.sh
+'2  32  0  ~/update_shell_env.sh
+'3  151  62  ~/.zshrc
+'4  152  6  ~/.zshrc
+'5  100  0  ~/.zshrc
+'6  1287  0  /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/logs/sbatchlog-iaa_runwppl_16189572_stdout.txt
+'7  1  0  ~/.zshrc
+'8  129  9  ~/.zshrc
+'9  44  12  ~/.zshrc
 
 # Jumplist (newest first):
--'  118  16  ~/.zshrc
+-'  118  0  ~/.zshrc
+-'  21  11  ~/update_shell_env.sh
+-'  32  0  ~/update_shell_env.sh
+-'  1  0  ~/update_shell_env.sh
 -'  151  0  ~/.zshrc
 -'  152  0  ~/.zshrc
 -'  100  0  ~/.zshrc
@@ -200,15 +203,11 @@
 -'  1  0  ~./bashrc
 -'  1  0  ~./bashrc
 -'  1  0  ~./bashrc
--'  1  0  ~./bashrc
--'  1  0  ~./bashrc
--'  1  0  ~./bashrc
--'  1  0  ~./bashrc
 
 # History of marks within files (newest to oldest):
 
 > ~/.zshrc
-	"	118	16
+	"	118	0
 	^	152	7
 	.	152	7
 	+	143	61
@@ -227,6 +226,9 @@
 	+	150	8
 	+	151	7
 	+	152	7
+
+> ~/update_shell_env.sh
+	"	21	11
 
 > /om/user/daeda/ite_iaa/ite_gb_inverseappraisal/logs/sbatchlog-iaa_runwppl_16189572_stdout.txt
 	"	1287	0

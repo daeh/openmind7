@@ -32,12 +32,21 @@ pip install --upgrade pip
 pip install -U tmuxp
 
 #######
-env_iaa_pyro
-conda update -c conda-forge anaconda
-conda update -c conda-forge python
-conda update --all -c pytorch -c conda-forge
+# env_iaa
+# conda update -n ve_iaa_pyro -c conda-forge anaconda
+# conda update -n ve_iaa_pyro -c conda-forge python
+# conda update -n ve_iaa_pyro --all -c pytorch -c conda-forge
+# pip install --upgrade pip
+# pip install -U pystan
+# pip install -U tmuxp
+
+
+env_iaa_cmdstan
+conda update -n ve_iaa_cmdstanpy --all -c conda-forge
 pip install --upgrade pip
-pip install -U tmuxp
+pip install --upgrade tmuxp
+pip install --upgrade "cmdstanpy[all]"
+
 
 conda clean --all
 
@@ -48,7 +57,10 @@ node -v
 # Install Node.js from https://nodejs.org/en/download/
 #####
 
+npm version
 npm install -g npm
+#
+npm version
 npm update -g jshint
 npm update -g webppl
 npm install --prefix ~/.webppl webppl-json --force

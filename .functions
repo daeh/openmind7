@@ -183,7 +183,7 @@ function launchkernel_iaa_tmux()
 
 	tmuxp load ./tmuxp_script.yaml
 }
-function launchkernel_iaapyro_tmux()
+function launchkernel_iaacmdstan_tmux()
 {
 	# "tmuxp_script.yaml in code"
 	# "calls launchkernel_iaa() from ~/.functions"
@@ -197,9 +197,9 @@ function launchkernel_iaapyro_tmux()
 	
 	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/" || exit 
 
-	tmux kill-session -t IAApyro-kernel
+	tmux kill-session -t IAAcmdstan-kernel
 
-	tmuxp load ./tmuxp_script_pyro.yaml
+	tmuxp load ./tmuxp_script_cmdstan.yaml
 }
 
 function launchkernel_iaa_head()
@@ -245,18 +245,19 @@ function launchkernel_iaa()
 	echo "testln-- ${logfilelink}"
 	echo "logfile: ${logfile}"
 	tail -f -n 70 "${logfile}"
+        tail -f -n 70 "${logfile}"
 }
 
-function launchkernel_iaa_pyro()
+function launchkernel_iaa_cmdstan()
 {
 	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal/code/" || exit 
-	slurmout="$(sbatch launch_remote_kernel_pyro.sbatch)"
+	slurmout="$(sbatch launch_remote_kernel_cmdstan.sbatch)"
 	echo "${slurmout}"
 	numeric_string_only=${slurmout//[^0-9]/}
 	# echo "${numeric_string_only}"
 	logfile="../logs/jupyter-log-${numeric_string_only}.txt"
-	tmux_temp_dir="/om/user/daeda/.tmux_temp_pyro_"
-	logfilelink="${tmux_temp_dir}/current_iaapyro_remotelog.txt"
+	tmux_temp_dir="/om/user/daeda/.tmux_temp_cmdstan_"
+	logfilelink="${tmux_temp_dir}/current_iaacmdstan_remotelog.txt"
 
 	### store current logfile location
 	if [[ ! -e $tmux_temp_dir ]]; then

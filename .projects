@@ -52,15 +52,15 @@ function env_iaa()
 	alias phome="/om/user/daeda/ite_iaa/ite_gb_inverseappraisal"
 	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal" || exit
 	host_save=$HOST
-	conda activate envs/default
+	# conda activate envs/default
+	conda activate ve_iaa_pyro
 	export HOST=$host_save
 	cd code || exit
-
 }
-function env_iaa_pyro()
+function env_iaa_cmdstan()
 {
 	# Set command line prompt
-	export project_name="ITE_IAApyro"
+	export project_name="ITE_IAAcmdstan"
 
 	# Call appropriate functions from ~/.functions
 	source "$HOME/.functions"
@@ -70,7 +70,7 @@ function env_iaa_pyro()
 	alias phome="/om/user/daeda/ite_iaa/ite_gb_inverseappraisal"
 	cd "/om/user/daeda/ite_iaa/ite_gb_inverseappraisal" || exit
 	host_save=$HOST
-	conda activate iaa_ve #envs/pyro
+	conda activate ve_iaa_cmdstanpy #envs/pyro
 	export HOST=$host_save
 	cd code || exit
 }
